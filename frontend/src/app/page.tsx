@@ -45,7 +45,7 @@ export default function BackToSchoolPlannerWidget() {
         if (showLoader) setLoading(true);
         try {
             const res: any = await apiRequest(
-                "http://localhost:5000/api/planner/query",
+                "https://bts-onboard-21c136a3dfd0.herokuapp.com/api/planner/query",
                 {
                     method: "POST",
                     body: {
