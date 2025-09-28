@@ -2,6 +2,7 @@ type HttpMethod = "GET" | "POST" | "PUT" | "DELETE";
 
 interface ApiOptions {
     method?: HttpMethod;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     body?: any;
     headers?: Record<string, string>;
 }

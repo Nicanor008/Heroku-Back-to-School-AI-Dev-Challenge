@@ -59,11 +59,11 @@ const BACK_TO_SCHOOL_CONTEXTS = {
 
 async function queryHerokuAI(prompt) {
     try {
-        const res = await fetch("https://us.inference.heroku.com/v1/chat/completions", {
+        const res = await fetch(`${process.env.INFERENCE_API_URL}/v1/chat/completions`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer inf-9d36c4cb-0bf7-47e6-8907-50d164c61da6`,
+                Authorization: `Bearer ${process.env.INFERENCE_API_KEY}`,
             },
             body: JSON.stringify({
                 model: "claude-4-sonnet",

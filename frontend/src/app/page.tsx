@@ -30,7 +30,7 @@ export default function BackToSchoolPlannerWidget() {
     const [planData, setPlanData] = useState<PlanResponse | null>(null);
     const [selectedRole, setSelectedRole] = useState<'student' | 'parent' | 'educator'>('student');
     const [selectedPhase, setSelectedPhase] = useState<string>('first_week');
-    const [subjects, setSubjects] = useState<string[]>(['Math', 'Science']);
+    const [subjects] = useState<string[]>(['Math', 'Science']);
     const [focusAreas, setFocusAreas] = useState<string[]>([]);
     const [customRequirements, setCustomRequirements] = useState<string>("");
     const [editingItem, setEditingItem] = useState<string | null>(null);
@@ -44,6 +44,7 @@ export default function BackToSchoolPlannerWidget() {
     const fetchBackToSchoolPlan = async (showLoader = true) => {
         if (showLoader) setLoading(true);
         try {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const res: any = await apiRequest(
                 "https://bts-onboard-21c136a3dfd0.herokuapp.com/api/planner/query",
                 {
@@ -358,7 +359,7 @@ export default function BackToSchoolPlannerWidget() {
                         {['student', 'parent', 'educator'].map((role) => (
                             <button
                                 key={role}
-                                onClick={() => setSelectedRole(role as any)}
+                                onClick={() => setSelectedRole(role as 'student' | 'parent' | 'educator')}
                                 className={`px-3 py-2 rounded-lg text-sm font-medium transition ${
                                     selectedRole === role
                                         ? 'bg-[#6366F1] text-white'
@@ -571,7 +572,7 @@ export default function BackToSchoolPlannerWidget() {
                                 <>
                                     <h3 className="font-medium text-blue-800 mb-1">Planning Complete!</h3>
                                     <p className="text-sm text-blue-600">
-                                        You've completed all back-to-school phases. Great work!
+                                        You&apos;ve completed all back-to-school phases. Great work!
                                     </p>
                                 </>
                             )}
